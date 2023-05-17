@@ -13,7 +13,7 @@ struct JarvisApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 
