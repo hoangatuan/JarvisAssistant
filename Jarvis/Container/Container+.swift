@@ -10,10 +10,12 @@ import OpenAI
 import Factory
 
 extension Container {
+
+    /// Get your token here: https://platform.openai.com/account/api-keys
     var jarvisService: Factory<OpenAIProtocol> {
         self {
             JarvisService(
-                openAI: OpenAI(apiToken: "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")
+                openAI: OpenAI(apiToken: "")
             )
         }
         .scope(.singleton)
