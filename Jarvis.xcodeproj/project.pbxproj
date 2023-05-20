@@ -16,6 +16,8 @@
 		A65074A02A152B90005A5ECB /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = A650749F2A152B90005A5ECB /* OpenAI */; };
 		A65074A32A152E6F005A5ECB /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = A65074A22A152E6F005A5ECB /* Factory */; };
 		A65074A62A152E97005A5ECB /* Container+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65074A52A152E97005A5ECB /* Container+.swift */; };
+		A6C6DB642A18BF3A001B3EC3 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6DB632A18BF3A001B3EC3 /* View+Ext.swift */; };
+		A6C6DB672A18C03E001B3EC3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C6DB662A18C03E001B3EC3 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		A65074992A13DA2A005A5ECB /* JarvisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisService.swift; sourceTree = "<group>"; };
 		A650749D2A152B73005A5ECB /* OpenAI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenAI; path = ../../Downloads/OpenAI; sourceTree = "<group>"; };
 		A65074A52A152E97005A5ECB /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
+		A6C6DB632A18BF3A001B3EC3 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		A6C6DB662A18C03E001B3EC3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 				A65074952A13D968005A5ECB /* Application */,
 				A65074982A13DA21005A5ECB /* Service */,
 				A65074A72A153427005A5ECB /* Presentation */,
+				A6C6DB622A18BF2D001B3EC3 /* Customize */,
 				A650747A2A12813C005A5ECB /* Assets.xcassets */,
 				A650747C2A12813C005A5ECB /* Jarvis.entitlements */,
 				A650747D2A12813C005A5ECB /* Preview Content */,
@@ -119,9 +124,26 @@
 		A65074A72A153427005A5ECB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				A65074782A12813B005A5ECB /* HomeView.swift */,
+				A6C6DB652A18C034001B3EC3 /* Home */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A6C6DB622A18BF2D001B3EC3 /* Customize */ = {
+			isa = PBXGroup;
+			children = (
+				A6C6DB632A18BF3A001B3EC3 /* View+Ext.swift */,
+			);
+			path = Customize;
+			sourceTree = "<group>";
+		};
+		A6C6DB652A18C034001B3EC3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A65074782A12813B005A5ECB /* HomeView.swift */,
+				A6C6DB662A18C03E001B3EC3 /* HomeViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +225,8 @@
 			files = (
 				A65074972A13D973005A5ECB /* AppDelegate.swift in Sources */,
 				A65074A62A152E97005A5ECB /* Container+.swift in Sources */,
+				A6C6DB672A18C03E001B3EC3 /* HomeViewModel.swift in Sources */,
+				A6C6DB642A18BF3A001B3EC3 /* View+Ext.swift in Sources */,
 				A65074792A12813B005A5ECB /* HomeView.swift in Sources */,
 				A650749A2A13DA2A005A5ECB /* JarvisService.swift in Sources */,
 				A65074772A12813B005A5ECB /* JarvisApp.swift in Sources */,
