@@ -1,16 +1,17 @@
 //
-//  HomeView.swift
+//  GalleryView.swift
 //  Jarvis
 //
-//  Created by Tuan Hoang on 15/05/2023.
+//  Created by Tuan Hoang on 21/05/2023.
 //
 
 import SwiftUI
+import OpenAI
 
-struct HomeView: View {
+struct GalleryView: View {
 
     @State
-    private var inputText = ""
+    private var inputText = "Generate an image of HaNoi in the morning"
 
     @State
     private var scrollToBottom: Bool = false
@@ -19,10 +20,9 @@ struct HomeView: View {
     private var keyboardFocus: Bool
 
     @ObservedObject
-    private var viewModel = HomeViewModel()
+    private var viewModel = GalleryViewModel()
 
     var body: some View {
-        
         VStack {
             conversationView()
             Spacer()
@@ -44,32 +44,52 @@ struct HomeView: View {
     }
 
     @ViewBuilder
-    private func buildConversationView(conversation: Conversation) -> some View {
-        if conversation.isLoading {
-            ProgressView()
-        } else if conversation.isBot {
-            HStack {
-                Text(conversation.content)
-                    .foregroundColor(.black)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(16)
-
-                Spacer()
-                Spacer()
-                    .frame(width: 32)
-            }
-        } else {
+    private func buildConversationView(conversation: GenericConversation<ImagesResult>) -> some View {
+        VStack {
             HStack {
                 Spacer()
                     .frame(width: 32)
                 Spacer()
 
-                Text(conversation.content)
+                Text(conversation.question.content)
                     .foregroundColor(.white)
                     .padding()
                     .background(Color.yellow)
                     .cornerRadius(16)
+            }
+
+            switch conversation.answer.status {
+            case .loading:
+                HStack {
+                    ProgressView()
+                    Spacer()
+                }
+            case .error:
+                HStack {
+                    Text("An error occurs. Please ask again")
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(16)
+
+                    Spacer()
+                    Spacer()
+                        .frame(width: 32)
+                }
+            case .success(let answer):
+                HStack {
+                    AsyncImage(url: URL(string: answer.data[0].url)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 256, height: 256)
+                            .cornerRadius(12)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    
+                    Spacer()
+                }
             }
         }
     }
@@ -86,13 +106,13 @@ struct HomeView: View {
                 }
             }
             .listStyle(.grouped)
-            .onChange(of: scrollToBottom, perform: { _ in
-                scrollViewProxy.scrollTo(viewModel.conversations.last, anchor: .bottom)
-                scrollToBottom = false
-            })
-            .onChange(of: viewModel.conversations) { _ in
-                scrollToBottom = true
-            }
+//            .onChange(of: scrollToBottom, perform: { _ in
+//                scrollViewProxy.scrollTo(viewModel.conversations.last, anchor: .bottom)
+//                scrollToBottom = false
+//            })
+//            .onChange(of: viewModel.conversations.count) { _ in
+//                scrollToBottom = true
+//            }
         }
     }
 
@@ -114,7 +134,7 @@ struct HomeView: View {
                 inputText = ""
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 Task {
-                    await viewModel.chat(question: query)
+                    await viewModel.generateImages(prompt: query)
                 }
             } label: {
                 Text("Send")

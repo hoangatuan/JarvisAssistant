@@ -22,7 +22,6 @@ struct Conversation: Identifiable, Hashable {
     }
 }
 
-
 final class HomeViewModel: ObservableObject {
 
     @Injected(\.jarvisService) private var jarvisService

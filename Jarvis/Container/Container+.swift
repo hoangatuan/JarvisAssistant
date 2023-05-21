@@ -15,7 +15,7 @@ extension Container {
     var jarvisService: Factory<OpenAIProtocol> {
         self {
             JarvisService(
-                openAI: OpenAI(apiToken: "")
+                openAI: OpenAI(apiToken: "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")
             )
         }
         .scope(.singleton)

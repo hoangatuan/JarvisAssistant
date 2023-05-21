@@ -13,7 +13,17 @@ struct JarvisApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "1.square.fill")
+                    }
+
+                GalleryView()
+                    .tabItem {
+                        Image(systemName: "2.square.fill")
+                    }
+            }
         }
     }
 
